@@ -31,3 +31,7 @@ build/
 
 ### VS Code ###
 .vscode/
+
+# 秘密情報（DBパスワードなど）
+# Thông tin bí mật (mật khẩu DB…)
+.env
