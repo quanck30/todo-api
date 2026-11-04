@@ -30,6 +30,20 @@
         <java.version>21</java.version>
     </properties>
     <dependencies>
+        <!-- JPA（Hibernate + Spring Data JPA）：ORMライブラリ -->
+        <!-- JPA (Hibernate + Spring Data JPA): thư viện ORM -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
+        </dependency>
+
+        <!-- MySQL JDBCドライバ（実行時のみ必要） -->
+        <!-- MySQL JDBC driver (chỉ cần lúc chạy) -->
+        <dependency>
+            <groupId>com.mysql</groupId>
+            <artifactId>mysql-connector-j</artifactId>
+            <scope>runtime</scope>
+        </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-webmvc</artifactId>
