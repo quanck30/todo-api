@@ -7,6 +7,7 @@ package com.quan.todoapi.entity;
  */
 
 import com.fasterxml.jackson.annotation.JsonCreator;
+import jakarta.persistence.*;
 
 /**
  * Todoリストの1件のタスクを表すクラス
@@ -14,9 +15,23 @@ import com.fasterxml.jackson.annotation.JsonCreator;
  * 現時点では普通のJavaクラス（POJO）、MySQL・JPA導入時に@Entityを付ける予定
  * Hiện tại chỉ là class Java thường (POJO). Khi dùng MySQL + JPA sẽ gắn thêm @Entity
  */
+@Entity
+@Table(name = "todos")
 public class Todo {
+
+    // 主キー。値はMySQLのAUTO_INCREMENTで自動採番される
+    // Khóa chính. Giá trị do AUTO_INCREMENT của MySQL tự cấp
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    // タイトルは必須項目（NOT NULL制約を付ける）
+    // Tiêu đề là bắt buộc (gắn ràng buộc NOT NULL)
+    @Column(nullable = false)
     private String title;
+
+    // プリミティブ型なので、カラムは自動的にNOT NULLになる
+    // Vì là kiểu primitive nên cột tự động là NOT NULL
     private boolean completed;
 
     // 引数なしコンストラクタ：JacksonがJSONからオブジェクトを生成する際に使う（JPAでも必須）
