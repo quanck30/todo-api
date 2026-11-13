@@ -50,10 +50,8 @@ public class TodoController {
      * Tìm thấy thì trả 200 OK, không có Todo với id đó thì trả 404 Not Found (không có body)
      */
     @GetMapping("/{id}")
-    public ResponseEntity<Todo> getById(@PathVariable Long id){
-        Optional<Todo> found = todoService.findById(id);
-        if(found.isEmpty()) return ResponseEntity.notFound().build();
-        return ResponseEntity.ok(found.get());
+    public Todo getById(@PathVariable Long id){
+       return todoService.findById(id);
     }
     /**
      * Todoを新規作成する（POST /api/todos）
@@ -82,10 +80,8 @@ public class TodoController {
      * Sửa thành công trả 200 OK (kèm Todo sau khi sửa), không có Todo với id đó thì trả 404 Not Found
      */
     @PutMapping("/{id}")
-    public ResponseEntity<Todo> update(@PathVariable Long id, @RequestBody Todo request){
-        Optional<Todo> updated = todoService.update(id, request);
-        if(updated.isEmpty()) return ResponseEntity.notFound().build();
-        return ResponseEntity.ok(updated.get());
+    public Todo update(@PathVariable Long id, @RequestBody Todo request){
+      return todoService.update(id, request);
     }
 
     /**
@@ -96,8 +92,7 @@ public class TodoController {
      * Xóa thành công trả 204 No Content (không có body), không có Todo với id đó thì trả 404 Not Found
      */
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> delete(@PathVariable Long id){
-        if(todoService.delete(id)) return ResponseEntity.noContent().build();
-        return ResponseEntity.notFound().build();
+    public void delete(@PathVariable Long id){
+        todoService.delete(id);
     }
 }
